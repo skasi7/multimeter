@@ -1,4 +1,4 @@
 multimeter
 ==========
 
-Simple 
+Simple RRD tool manager. 
