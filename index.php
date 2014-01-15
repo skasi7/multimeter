@@ -16,6 +16,7 @@
     <link href="css/starter-template.css" rel="stylesheet">
   </head>
   <body>
+    <?php if (!isset($_GET['rrd'])) { $_GET['rrd'] = 'raspberry_pi'; } ?>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -50,16 +51,18 @@
         <h3>Last 365 Days</h3>
         <div id="year" style="height:300px" class="col-xs-12"></div>
       </div>
-    </div><!-- /.container -->
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Flot includes -->
     <script src="js/jquery.flot.min.js"></script>
     <script src="js/jquery.flot.time.min.js"></script>
     <script src="js/jquery.flot.tooltip.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
 
+    <!-- Flot code -->
     <script type="text/javascript">
       $(document).ready(function() {
         var options = {
@@ -83,14 +86,14 @@
           }
         };
 
-        var dataDay = [<?php echo exec('/bin/bash scripts/fetch_rrd.sh rrds/raspberry_pi.rrd 24h');?>];
+        var dataDay = [<?php echo exec('/bin/bash scripts/fetch_rrd.sh rrds/'.escapeshellcmd($_GET['rrd']).'.rrd 24h');?>];
         $.plot($("#day"), dataDay, options);
-        var dataWeek = [<?php echo exec('/bin/bash scripts/fetch_rrd.sh rrds/raspberry_pi.rrd 7d');?>];
+        var dataWeek = [<?php echo exec('/bin/bash scripts/fetch_rrd.sh rrds/'.escapeshellcmd($_GET['rrd']).'.rrd 7d');?>];
         $.plot($("#week"), dataWeek, options);
-        var dataYear = [<?php echo exec('/bin/bash scripts/fetch_rrd.sh rrds/raspberry_pi.rrd 365d');?>];
+        var dataYear = [<?php echo exec('/bin/bash scripts/fetch_rrd.sh rrds/'.escapeshellcmd($_GET['rrd']).'.rrd 365d');?>];
         $.plot($("#year"), dataYear, options);
       });
-      </script>
+    </script>
   </body>
 </html>
 
