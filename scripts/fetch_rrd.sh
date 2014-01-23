@@ -21,5 +21,5 @@ fi
 
 # Fetch and remove last line
 rrdtool fetch $rrd_file AVERAGE -s end-$span | sed '$d' | \
-  ./scripts/rrd_fetch_2_flot.py
+  ./scripts/fetch_rrd_to_flot.py
 

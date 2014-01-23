@@ -3,7 +3,7 @@
 probe_script=$1
 if [ -z $probe_script ]
 then
-  echo "You must provide an probe script!" >&2
+  echo "You must provide a probe script!" >&2
   exit 1
 fi
 
@@ -22,7 +22,8 @@ fi
 
 if [ ! -f $rrd_file ]
 then
-  $(dirname $0)/create_rrd.sh $probe_script $rrd_file
+  echo "RRD filename '$rrd_file' not found" >&2
+  exit 1
 fi
 
 data=$($probe_script | awk '{ print $2 }' | tr '\n' ':')
