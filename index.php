@@ -32,6 +32,7 @@
           <ul class="nav navbar-nav">
             <li><a href="index.php?rrd=raspberry_pi">Raspberry Pi</a></li>
             <li><a href="index.php?rrd=work">Workplace</a></li>
+            <li><a href="index.php?rrd=sodexo">Sodexo</a></li>
           </ul>
         </div>
       </div>
@@ -72,7 +73,7 @@
           },
           yaxis: {
             tickFormatter: function(value) {
-              return value.toFixed(1) + 'ºC' // < ?php echo strtoupper($config['unit'])?>&deg;';
+              return value.toFixed(1) + "<?php echo exec('/bin/bash scripts/fetch_unit.sh '.escapeshellcmd($_GET['rrd']));?>"
             }
           },
           grid: {
