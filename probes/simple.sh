@@ -1,3 +1,4 @@
 #!/bin/bash
 
-echo "Temperature"
+# Just echo manually all the data sources
+# echo "Temperature"
