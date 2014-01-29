@@ -66,6 +66,9 @@
     <script type="text/javascript">
       $(document).ready(function() {
         var options = {
+          legend: {
+            position: "nw"
+          },
           xaxis: {
             mode: "time",
             timezone: "browser",
@@ -82,7 +85,7 @@
           },
           tooltip: true,
           tooltipOpts: {
-            content: "%y"
+            content: "%x: %y"
           }
         };
 
